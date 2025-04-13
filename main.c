@@ -2,7 +2,6 @@
 #include <SDL_image.h>
 #include <SDL.h>
 #include "Racket.h"
-#include "Racket.c"
 #include "Constantes.h"
 #include <stdlib.h>
 
@@ -15,7 +14,7 @@ int main(int argc, char *argv[]){
     SDL_Surface *milieuTerrain, *Perdu, *icon, *menu;SDL_Rect posPerdu, posMenu;
 
     int continuer = 1;int SpeedRacket = 1;
-    int directionBalle;int VitesseBalle = 3;
+    int directionBalle;int VitesseBalle = 5;
     int tempsActuel, tempsPrecedent;int ticks = 0;
     int typeRebond = 0;int joueur1Appuyer = 0;
     int joueur2Appuyer = 0;
@@ -25,7 +24,7 @@ int main(int argc, char *argv[]){
 
     SDL_Init(SDL_INIT_VIDEO);
 
-    icon = IMG_Load("balle.bmp");
+    icon = IMG_Load(FILE_BALL);
     SDL_SetColorKey(icon, SDL_SRCCOLORKEY, SDL_MapRGB(icon->format, 255, 255, 255));
     SDL_WM_SetIcon(icon, NULL);
 
@@ -34,17 +33,17 @@ int main(int argc, char *argv[]){
     SDL_FillRect(fenetre, NULL, SDL_MapRGB(fenetre->format, 255, 255, 255));
 
     //init Surface
-    Racket[JOUEUR_1] = SDL_LoadBMP("Racket.bmp");
-    Racket[JOUEUR_2] = SDL_LoadBMP("Racket.bmp");
-    Balle = IMG_Load("balle.bmp");
+    Racket[JOUEUR_1] = SDL_LoadBMP(FILE_RACKET);
+    Racket[JOUEUR_2] = SDL_LoadBMP(FILE_RACKET);
+    Balle = IMG_Load(FILE_BALL);
     SDL_SetColorKey(Racket[JOUEUR_1], SDL_SRCCOLORKEY, SDL_MapRGB(Racket[JOUEUR_1]->format, 255, 0, 0));
     SDL_SetColorKey(Racket[JOUEUR_2], SDL_SRCCOLORKEY, SDL_MapRGB(Racket[JOUEUR_2]->format, 255, 0, 0));
     SDL_SetColorKey(Balle, SDL_SRCCOLORKEY, SDL_MapRGB(Balle->format, 255, 255, 255));
     LimiteGauche = SDL_CreateRGBSurface(SDL_HWSURFACE, ECART_RACKET - ECART_LIMITE, HAUTEUR_FENETRE, 32, 0, 0, 0, 0);
     LimiteDroite = SDL_CreateRGBSurface(SDL_HWSURFACE, ECART_RACKET - ECART_LIMITE, HAUTEUR_FENETRE, 32, 0, 0, 0, 0);
     milieuTerrain = SDL_CreateRGBSurface(SDL_HWSURFACE, 6, HAUTEUR_FENETRE, 32, 0, 0, 0, 0);
-    Perdu = SDL_LoadBMP("Perdu.bmp");
-    menu = SDL_LoadBMP("imgMenu.bmp");
+    Perdu = SDL_LoadBMP(FILE_PERDU);
+    menu = SDL_LoadBMP(FILE_IMG_MENU);
 
     //init direction
     initDirectBalle(&directionBalle);
@@ -99,15 +98,18 @@ int main(int argc, char *argv[]){
                     mode = 2;
                     Menu = 0;
                     break;
-                case SDLK_1:
+                case SDLK_F1:
+                    printf("SDLK_1 pressed !");
                     mode = 1;
                     Menu = 0;
                     break;
-                case SDLK_2:
+                case SDLK_F2:
+                    printf("SDLK_2 pressed !");
                     mode = 2;
                     Menu = 0;
                     break;
                 case SDLK_ESCAPE:
+                    printf("ESCAPE pressed !");
                     continuer = 0;
 
                 default:

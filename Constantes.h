@@ -1,5 +1,6 @@
-#ifndef RACKET
-#define RACKET
+#ifndef CONSTANTES_H
+#define CONSTANTES_H
+    // Pour les rackettes et les joueurs
     enum{JOUEUR_1, JOUEUR_2};
     #define NBR_JOUEURS 2
     #define ECART_RACKET 40
@@ -29,7 +30,18 @@
 
     #define LARGEUR_MODE_1_MUR 6
     #define MODE_1_MUR_POS LARGEUR_FENETRE / 2 - LARGEUR_MODE_1_MUR / 2
-#endif // RACKET
+
+    // Images
+    #ifndef ASSETDIR
+    #define ASSETDIR "/usr/local/share/ScottsPong/assets/"
+    #endif
+
+    #define FILE_BALL      ASSETDIR "balle.bmp"
+    #define FILE_RACKET    ASSETDIR "Racket.bmp"
+    #define FILE_PERDU     ASSETDIR "Perdu.bmp"
+    #define FILE_IMG_MENU  ASSETDIR "imgMenu.bmp"
+
+#endif // CONSTANTES_H
 
 
 
